@@ -123,6 +123,21 @@ class RecipeCard extends HTMLElement {
     // If nothing was passed in, return
     if (!data) return;
 
+    let starImage;
+    if (data.rating >= 4.5) {
+      starImage = 'assets/images/icons/5-star.svg';
+    } else if (data.rating >= 3.5) {
+      starImage = 'assets/images/icons/4-star.svg';
+    } else if (data.rating >= 2.5) {
+      starImage = 'assets/images/icons/3-star.svg';
+    } else if (data.rating >= 1.5) {
+      starImage = 'assets/images/icons/2-star.svg';
+    } else if (data.rating >= 0.5) {
+      starImage = 'assets/images/icons/1-star.svg';
+    } else {
+      starImage = 'assets/images/icons/0-star.svg';
+    }
+
     // A6. TODO - Select the <article> we added to the Shadow DOM in the constructor
     let article = this.shadowRoot.querySelector('article');
     // A7. TODO - Set the contents of the <article> with the <article> template given in
@@ -138,7 +153,7 @@ class RecipeCard extends HTMLElement {
     <p class="organization">${data.organization}</p>
     <div class="rating">
       <span>${data.rating}</span>
-      <img src="assets/images/icons/5-star.svg" alt="5 stars">
+      <img src="${starImage}" alt="${data.rating}">
       <span>(${data.numRatings})</span>
     </div>
     <time>${data.lengthTime}</time>
